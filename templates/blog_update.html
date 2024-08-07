@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<h2>Create Blog Post</h2>
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-info">update</button>
+    <br><br>
+</form>
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'link image code',
+            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+        });
+    </script>
+{% endblock content %}

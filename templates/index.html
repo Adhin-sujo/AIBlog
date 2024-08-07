@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{% if dashboard %}
+AI Blog Dashboard
+{% else %}
+AI Blog Home
+{% endif %}
+{% endblock title %}
+
+{% block content %}
+{% for x in post %}
+<div class="card">
+    <div class="card-header">
+      <p>{{ x.author }}</p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ x.title }}</h5>
+      <p class="card-text">{{ x.content|safe }}</p>
+      <a href="{% url 'post-detail' x.pk %}" class="btn btn-primary">Read</a>
+      {% if create_post %}
+      <a href="{% url 'post-update' x.pk %}" class="btn btn-info">update</a>
+      <a href="{% url 'post-delete' x.pk %}" class="btn btn-danger">Delete</a>
+      {% endif %}
+    </div>
+</div>
+<br>
+{% empty %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Empty Posts</h5>
+    <p class="card-text">No Posts so far. Come back later!</p>
+  </div>
+</div>
+<br>
+{% endfor %}
+{% if create_post %}
+<div class="card">
+  <div class="card-body">
+    <p class="card-text"></p>
+    {% if user.is_authenticated %}
+    <a href="{% url 'create' %}" class="btn btn-primary">Create Post</a>
+
+    {% else %}
+    <a href="{% url 'login' %}" class="btn btn-primary">Create Post</a>
+    {% endif %}
+    </p>
+  </div>
+</div>
+{% endif %}
+<br><br>
+
+{% endblock content %}
