@@ -16,14 +16,14 @@ AI Blog Home
       <p>{{ x.author }}</p>
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{ x.title }}</h5>
-      <p class="card-text">{{ x.content|safe }}</p>
-      <a href="{% url 'post-detail' x.pk %}" class="btn btn-primary">Read</a>
-      {% if create_post %}
-      <a href="{% url 'post-update' x.pk %}" class="btn btn-info">update</a>
-      <a href="{% url 'post-delete' x.pk %}" class="btn btn-danger">Delete</a>
-      {% endif %}
+      <h3 class="card-title"><a href="{% url 'post-detail' x.pk %}" class="text-muted">{{ x.title }}</a></h3>
     </div>
+      {% if create_post %}
+      <div class="card-footer">
+        <a href="{% url 'post-update' x.pk %}" class="btn btn-info">update</a>
+        <a href="{% url 'post-delete' x.pk %}" class="btn btn-danger">Delete</a>
+    </div>
+      {% endif %}
 </div>
 <br>
 {% empty %}

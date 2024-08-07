@@ -3,6 +3,7 @@
 {% block content %}
 
 <h1>{{post.title}}</h1>
+<p class="text text-muted">{{post.author}}</p>
 <div>
     {{post.content|safe}}
 </div>
